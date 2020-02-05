@@ -26,8 +26,8 @@ const assertObjectsEqual = function(actual, expected) {
     }
     
     answer ?
-      console.log(`Assertion Passed!:  ${inspect(actual)}  =✔️= ${inspect(expected)}`) :
-      console.log(`Assertion Failed!:  ${inspect(actual)}  =❗ = ${inspect(expected)}`);
+      console.log(`Assertion Passed:  ${inspect(actual)}\t=✔️ =\t ${inspect(expected)}`) :
+      console.log(`Assertion Failed:  ${inspect(actual)}\t=❗ =\t ${inspect(expected)}`);
   };
   eqObjects(actual,expected); //objects equal?
 };
