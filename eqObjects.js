@@ -1,10 +1,9 @@
 // AssertEqual (Modified)
 const assertEqual = function(actual, expected,value) {
 
-  if(actual === expected) {
+  if (actual === expected) {
     console.log(`${value}:\t${actual}\t\t ✔️ \t\t ${expected}`);
-  }
-  else{
+  } else {
     console.log(`${value}:\t${actual}\t\t ✖️ \t\t ${expected}`);
     return false;
   }
@@ -13,16 +12,23 @@ const assertEqual = function(actual, expected,value) {
 // Returns true if both objects have identical keys with identical values.
 // Otherwise you get back a big fat false!
 const eqObjects = function(object1, object2) {
-  let answer = true; //ans is true until proven otherwise. 
-  console.log('\n\t--Objects being Compared--\n',object1,object2)
-  
-  for(let value in object1){
-    assertEqual(object1[value],object2[value],value)===undefined?'':answer=false;
+  // make object with most keys object1
+  if (Object.keys(object2).length > Object.keys(object1).length) {
+    const objArray = [object1,object2];
+    object1 = objArray[1];
+    object2 = objArray[0];
   }
 
-  answer ? 
-  console.log(`Are Objects Equal? (Result):  📦  =✔️= 📦`) :
-  console.log(`Are Objects Equal? (Result):  📦  =❗= 📦`);
+  let answer = true; //ans is true until proven otherwise.
+  console.log('\n\t--Objects being Compared--\n',object1,object2);
+  
+  for (let value in object1) {
+    assertEqual(object1[value],object2[value],value) === undefined ? '' : answer = false;
+  }
+
+  answer ?
+    console.log(`Are Objects Equal? (Result):  📦  =✔️= 📦`) :
+    console.log(`Are Objects Equal? (Result):  📦  =❗ = 📦`);
 };
 
 const ab = { a: "1", b: "2" };
