@@ -23,24 +23,37 @@ const eqObjects = function(object1, object2) {
   console.log('\n\t--Objects being Compared--\n',object1,object2);
   
   for (let value in object1) {
+    // values could be objects 
+    if ( // both values are objects & one is not undefined
+      typeof object1[value] === 'object' &&
+      typeof object2[value] === 'object'
+    )
+    {
+      return eqObjects(object1[value], object2[value]);
+    }
+
     assertEqual(object1[value],object2[value],value) === undefined ? '' : answer = false;
   }
 
   answer ?
-    console.log(`Are Objects Equal? (Result):  📦  =✔️= 📦`) :
+    console.log(`Are Objects Equal? (Result):  📦  =✔️ = 📦`) :
     console.log(`Are Objects Equal? (Result):  📦  =❗ = 📦`);
 };
 
-const ab = { a: "1", b: "2" };
-const ba = { b: "2", a: "1" };
-eqObjects(ab, ba); // => true
+eqObjects(
+  { a: { z: 1 }, b: 2 },
+  { a: { z: 1 }, b: 2 }
+ ) // => true
 
-const cab = { y: "1", x: "2" };
-const cba = { x: "1", y: "1" };
-eqObjects(cab, cba); // => false
+eqObjects(
+  { a: { y: 0, z: 1 }, b: 2 },
+  { a: { z: 1 }, b: 2 }
+) // => false
 
-const abc = { a: "1", b: "2", c: "3" };
-eqObjects(ab, abc); // => false
+eqObjects(
+  { a: { y: 0, z: 1 }, b: 2 },
+  { a: 1, b: 2 }
+) // => false
 
 const empty1 = {}; const empty2 = {};
 eqObjects(empty1, empty2); // => true
