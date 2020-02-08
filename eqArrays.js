@@ -1,23 +1,50 @@
 // AssertEqual
 const assertEqual = function(actual, expected) {
   console.log(actual === expected ?
-    `${actual}\t\t ✔️ \t\t ${expected}` :
-    `${actual}\t\t ✖️ \t\t ${expected}`
+    `${actual}\t ✔️ \t ${expected}` :
+    `${actual}\t ✖️ \t ${expected}`
   );
 };
 
 // Implement a function eqArrays which takes in two arrays and returns true or false, based on a perfect match.
 
-const eqArrays = (arr1,arr2) => {
-  let i = 0;
-  while (i < arr1.length) {
-    if (arr1[i] !== arr2[i]) return false;
-    i++;
-  }
-  return true;
+const eqArrays = (array1,array2) => {
+  let ans = true; // ans is true until proven false
+  array1.forEach(
+    (el, i) => {
+      // console.log(`${i}: [${el}]\t\t[${array2[i]}]`, );
+      if (Array.isArray(el) === true && Array.isArray(array2[i])) {
+        // console.log('we are handling arrays')
+        if (el.length !== array2[i].length) {
+          ans = false;
+        } else {
+          eqArrays(el,array2[i]);
+        }
+      } // array handling
+      else if (el !== array2[i]) {
+        // console.log('we NOT handling arrays')
+        ans = false;
+      } else {
+        return;
+      }
+    }
+  );
+  return ans;
 };
+assertEqual(
+  eqArrays([2, [3, 4]], [2, [3, 4]]), true);
 
-assertEqual(eqArrays([1, 2, 3], [1, 2, 3]), true); // => should PASS
-assertEqual(eqArrays([1, 2, 3], [3, 2, 1]), false); // => should FAIL
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", "3"]), true); // => should PASS
-assertEqual(eqArrays(["1", "2", "3"], ["1", "2", 3]), false); // => should FAIL
+assertEqual(
+  eqArrays([2, [3, 4]], [[2, 3], 4]), false);
+
+assertEqual(
+  eqArrays([2, 3, 4], [2, 3, 4]), true);
+
+assertEqual(
+  eqArrays([[2, 3], [4]], [[2, 3], [4]]), true);
+
+assertEqual(
+  eqArrays([[2, 3], [4]], [[2, 3], [4, 5]]), false);
+
+assertEqual(
+  eqArrays([[2, 3], [4]], [[2, 3], 4]), false);
