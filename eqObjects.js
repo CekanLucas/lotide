@@ -20,7 +20,6 @@ const eqObjects = function(object1, object2) {
   }
 
   let answer = true; //ans is true until proven otherwise.
-  console.log('\n\t--Objects being Compared--\n',object1,object2);
   
   for (let value in object1) {
     // values could be objects 
@@ -35,25 +34,7 @@ const eqObjects = function(object1, object2) {
     assertEqual(object1[value],object2[value],value) === undefined ? '' : answer = false;
   }
 
-  answer ?
-    console.log(`Are Objects Equal? (Result):  📦  =✔️ = 📦`) :
-    console.log(`Are Objects Equal? (Result):  📦  =❗ = 📦`);
+  return answer ? true : false;
 };
 
-eqObjects(
-  { a: { z: 1 }, b: 2 },
-  { a: { z: 1 }, b: 2 }
- ) // => true
-
-eqObjects(
-  { a: { y: 0, z: 1 }, b: 2 },
-  { a: { z: 1 }, b: 2 }
-) // => false
-
-eqObjects(
-  { a: { y: 0, z: 1 }, b: 2 },
-  { a: 1, b: 2 }
-) // => false
-
-const empty1 = {}; const empty2 = {};
-eqObjects(empty1, empty2); // => true
+module.exports = eqObjects;
