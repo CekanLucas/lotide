@@ -42,3 +42,4 @@ assertEqual(letterPositions('lighthouse in the house').e[2],22);
   n: [12]
 }
 */
+module.exports = letterPositions;
