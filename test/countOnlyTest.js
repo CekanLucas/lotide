@@ -20,19 +20,19 @@ describe("#countOnly", () => {
     Fang: true,
   });
 
-  it("Jason", () => {
+  it("Jason return 1", () => {
     const input = result1["Jason"];
     const output = 1;
     assert.equal(input, output);
   });
 
-  it("Karima", () => {
+  it("Karima return undefined", () => {
     const input = result1["Karima"];
     const output = undefined;
     assert.equal(input, output);
   });
 
-  it("Fang", () => {
+  it("Fang return 2", () => {
     const input = result1["Fang"];
     const output = 2;
     assert.equal(input, output);
