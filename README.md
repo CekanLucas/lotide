@@ -22,10 +22,6 @@ This project was created and published by me as part of my learnings at Lighthou
 
 `const results = _.tail([1, 2, 3]) // => [2, 3]`
 
-## Documentation
+## Testing 
 
-The following functions are currently implemented:
-
-* `function1(...)`: description
-* `function2(...)`: description
-* `function3(...)`: description
+This library uses Chai and Mocha for testing `npm test` to see results for unit tests

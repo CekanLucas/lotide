@@ -1,6 +1,6 @@
 {
   "name": "@cekanlucas/lotide",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "assert that two arrays are equal",
   "main": "assertArraysEqual.js",
   "directories": {
