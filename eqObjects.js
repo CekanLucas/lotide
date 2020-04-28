@@ -30,7 +30,6 @@ const eqObjects = function(object1, object2) {
     {
       return eqObjects(object1[value], object2[value]);
     }
-
     assertEqual(object1[value],object2[value],value) === undefined ? '' : answer = false;
   }
 
